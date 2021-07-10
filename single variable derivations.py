@@ -1,3 +1,9 @@
+''' polynomial
+    Polynomial is a class that takes in a list of numbers where each number is a degree. The polynomial hosts a function
+    called 'derivative' that simply moves down the exponent as a constant and subtracts one, just as one would do in the
+    case of a normal polynomial when calculating its derivative.
+'''
+
 class polynomial:
     def __init__(self, L):
         self.polyList = L
@@ -21,6 +27,12 @@ p.derivative()
 assert p.polyList == 6, "When reduced to only a constant term we should return that constant term!"
 p.derivative()
 assert p.polyList == [], "We need to derive away the function."
+
+
+''' euler_function
+    The Euler function is a class representing c*e^(exp), where the derivative is c*exp*e^(exp), naturally. This class
+    holds both a derivative function that does this as well as a primitive function that works in reverse.
+'''
 
 class euler_function:
     def __init__(self,c,ex):
