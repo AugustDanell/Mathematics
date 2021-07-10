@@ -1,3 +1,10 @@
+''' Matrix
+    The class is initiated by a list of vectors. The vectors much be of equal length for every row and they must all contain
+    either a float or an int. The matrix contains built in functions like is_qudratic, which returns a boolean pertaining to
+    whether or nor the matrix is of a quadratic form or not. Moreover the matrix also contains a function that returns the transponate
+    of the matrix, that is, the rows turned into columns and the columns turned into rows.
+'''
+
 class matrix:
     def __init__(self, m):
         assert len(m) > 0, "You cannot assign a matrix an empty list."
@@ -16,9 +23,6 @@ class matrix:
     def is_quadratic(self):
         return self.quadratic
 
-    def rows(self):
-        return self.vectors
-
     def transponate(self):
         l = []
         for i in range(self.rows):
@@ -26,6 +30,12 @@ class matrix:
             for j in range(self.cols):
                 l[i].append(self.vectors[j][i])
         return matrix(l)
+
+''' Dot Product
+    Dot Product is defined as the sum of all the products of two vectors. This dot product is geometrically very important,
+    for instance it can be used to determine orthogonality between two vectors which is used later on aswell. Dot Product
+    is a simple procedure, we simply sum up all the products pairwise and return it.
+'''
 
 def dot_product(v1,v2):
     l1 = len(v1)
@@ -46,6 +56,11 @@ def dot_product(v1,v2):
 
 assert dot_product([4,4,4],[4,4,4]) == 48
 
+''' is_orthogonal
+    Using the aforementioned function "dot_product" we implement it as a boolean function to see if two vectors are
+    orthogonal. For instance, the base vectors [1,0,0], [0,1,0], [0,0,1] are naturally orthogonal and perpendicular as
+    their dot product will amount to 0.  
+'''
 def is_orthogonal(v1, v2):
     if(dot_product(v1,v2) == 0):
         return True
@@ -53,6 +68,11 @@ def is_orthogonal(v1, v2):
 
 assert is_orthogonal([1,0,0], [0,0,1])
 
+''' cross_product
+    Cross product is defined in 3D space, the crossproduct of two vectors that we must call v1 and v2 will amount to a
+    third vector called v3 which is perpendicular to the plane that v1 and v2 spans. V3 in this case is to be refered to
+    as the normal vector of that plane. To make a cross product see the return statement below:
+'''
 def cross_product(v1,v2):
     l1 = len(v1)
     l2 = len(v2)
@@ -68,6 +88,10 @@ def cross_product(v1,v2):
 
 assert cross_product([0,1,0],[1,0,0]) == [0,0,-1]
 
+''' scalar_product
+    Another common form of products is the scalar, it simply means that we take a scaling constant and apply that to all
+    the elements inside the vector.
+'''
 def scalar_product(scalar, v):
     return list(map (lambda e : e*scalar, v))
 
