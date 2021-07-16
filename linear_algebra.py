@@ -124,3 +124,30 @@ M2 = matrix([[1,2],[3,4]])
 M3 = matrix_multiplication(M1,M2)
 assert M3.vectors[0] == [7,10]
 assert M3.vectors[1] == [15,22]
+
+def scalar_product_matrix(scalar, m):
+    for i in range(m.rows):
+        m.vectors[i] = scalar_product(scalar,m.vectors[i])
+
+def gaussian_elmination():
+    pass
+
+def matrix_inverse():
+    pass
+
+def determinant_2x2(m):
+    assert len(m.vectors[0]) == 2
+    return m.vectors[0][0]*m.vectors[1][1] - m.vectors[1][0]*m.vectors[0][1]
+
+A = matrix([[5,2],[-7,-3]])
+
+def matrix_inverse_2x2(m):
+    a,b = m.vectors[0][0], m.vectors[0][1]
+    c,d = m.vectors[1][0], m.vectors[1][1]
+
+    m2 = matrix([[d, -b],[-c,a]])
+    return scalar_product_matrix(1/determinant_2x2(m),m2)
+
+matrix_inverse_2x2(A)
+assert A.vectors[0] == [5,2]
+assert A.vectors[1] == [-7,-3]
